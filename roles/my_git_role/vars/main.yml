@@ -1,0 +1,6 @@
+---
+# vars file for my_git_role
+
+git_packages:
+  - git
+

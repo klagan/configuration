@@ -1,6 +1,7 @@
 ---
-# - hosts: '{{ host }}'
-- hosts: localhost
+- name: Configure a development box
+  # - hosts: '{{ host }}'
+  hosts: localhost
   become: yes
   become_user: root
   gather_facts: yes
@@ -15,9 +16,35 @@
 
   vars:
     extra_path: /home/$USER/.local/bin/checkov
+    ssh_key_filename : id_kam
+    machine_user_name: "kam"
+    # The "key" here is a regex of a setting you want to replace and the value is
+    # the setting name + the setting value. E.g. we want to replace the line
+    # "Port 22" with "Port 22222". The regex (the key) would be "^Port 22 " which
+    # means "search for a line in /etc/ssh/sshd_config that begins with 'Port 22 '
+    # and replace the whole line with 'Port 22222'". This enables you to replace
+    # every setting in sshd_config.
+    my_sshd_settings:
+      "^PasswordAuthentication": "PasswordAuthentication no"  # Disable password authentication
+      "^PermitRootLogin": "PermitRootLogin no"                # Disable SSH root login
+      "^PermitTunnel": "PermitTunnel no"                      # Disable tun(4) device forwarding
+      "^Port ": "Port 22"                                     # Set SSHd port
+  
+    roles:
 
+      - role: my_git_role
+        vars:
+          git_user_name: "klagan"
+          git_user_email: "github@lagan.me"
+
+    handlers:
+      - name: restart ssh
+        service:
+          name: ssh
+          state: restarted
+  
+  
   tasks:
-
   - debug: msg="Host is {{ ansible_fqdn }}"
     
   # needs to be installed if you want to use "check" facility of ansible-playbook (on RH)
@@ -68,6 +95,8 @@
     - sshguard
     - unattended-upgrades
     - sudo
+    - openssh-server
+    - openssh-client
     # - fail2ban
     # - crowdsec
 
@@ -80,6 +109,28 @@
       update_cache: yes 
       force_apt_get: yes
 
+  - name: generate SSH key "{{ssh_key_filename}}"
+    user:
+      name: "{{ansible_user}}"
+      generate_ssh_key: yes
+      ssh_key_type: rsa
+      ssh_key_bits: 4096
+      ssh_key_file: /home/{{machine_user_name}}/.ssh/{{ssh_key_filename}}
+      # ssh_key_passphrase: "{{ssh_passphrase}}"
+      force: no
+
+  - name: Configure sshd_config (ssh server) settings
+    lineinfile:
+      dest: "/etc/ssh/sshd_config"
+      regexp: "{{ item }}"
+      line: "{{ my_sshd_settings[item] }}"
+      state: "present"
+    notify: "restart ssh"
+    with_items:
+      - "{{ my_sshd_settings | list }}"
+    tags:
+      - ssh
+
   - include: terraform/install.yml
 
   - include: checkov/install.yml
@@ -90,9 +141,6 @@
 
   - include: ufw/install.yml
 
-  # edit the .configuration in the ./git folder before enabling this
-  # - include: git/install.yml
-
   - name: install lynx
     apt:
       name: lynx
@@ -100,4 +148,4 @@
     environment:
       RUNLEVEL: 1
 
-  - include: minikube/install.yml
+  # - include: minikube/install.yml
