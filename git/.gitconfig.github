@@ -1,0 +1,6 @@
+[user]
+ name = Kam Lagan
+ email = k.lagan@gmail.com
+ signingkey=EFC6BD68
+[commit]
+ gpgsign=true

@@ -1,0 +1,9 @@
+# manual commands to set ~/.gitconfig
+# git config --global user.name "Kam Lagan"
+# git config --global --add user.email "github@lagan.me"
+
+[includeIf "gitdir:~/source/example/"]
+  path = ~/.gitconfig.example
+
+[includeIf "gitdir:~/source/github/"]
+  path = ~/.gitconfig.github

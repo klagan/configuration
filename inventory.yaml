@@ -1,0 +1,10 @@
+# for illustrative purposes.  file is not used in this sample
+http:
+  hosts:
+    kamapp.uksouth.cloudapp.azure.com:
+  vars:
+    ansible_ssh_user: vmadmin
+
+  localhost:
+   vars:
+     ansible_connection: local

@@ -1,0 +1,16 @@
+  
+  # - pre_tasks:
+  #   - name: Generate ED25519 key if needed
+  #     command : ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N ""
+  #     args:
+  #       creates: /etc/ssh/ssh_host_ed25519_key
+
+  - import_role:
+      name: devsec.hardening.ssh_hardening
+  - import_role:
+      name: devsec.hardening.os_hardening
+
+    vars:
+      ssh_client_port: 22
+      os_auth_retries: 991
+

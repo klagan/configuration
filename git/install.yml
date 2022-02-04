@@ -1,0 +1,19 @@
+  - name: install git
+    apt:
+      name: git
+      state: present
+  
+  - name: configure git
+    copy: 
+      src: "./git/.gitconfig" 
+      dest: "~/.gitconfig"
+
+  - name: configure git github
+    copy: 
+      src: "./git/.gitconfig.github" 
+      dest: "~/.gitconfig.github"
+
+  - name: configure git example
+    copy: 
+      src: "./git/.gitconfig.example" 
+      dest: "~/.gitconfig.example"

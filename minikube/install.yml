@@ -1,0 +1,11 @@
+
+  - import_role:
+      name: pandemonium1986.k8s_toolbox.minikube
+  - import_role:
+      name: pandemonium1986.k8s_toolbox.kubectx
+  - import_role:
+      name: pandemonium1986.k8s_toolbox.k9s
+  - import_role:
+      name: pandemonium1986.k8s_toolbox.stern
+  - import_role:
+      name: pandemonium1986.k8s_toolbox.helm

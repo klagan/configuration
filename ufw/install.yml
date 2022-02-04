@@ -1,0 +1,25 @@
+
+  # https://docs.ansible.com/ansible/latest/collections/community/general/ufw_module.html#ansible-collections-community-general-ufw-module
+  - name: Allow everything and enable UFW
+    community.general.ufw:
+      state: enabled
+      policy: allow
+
+  - name: Enable logging
+    community.general.ufw:
+      logging: "on"
+      rule: reject
+      port: auth
+      log: yes
+      
+  - name: Allow port 80
+    community.general.ufw:
+      rule: allow
+      port: "80"
+      proto: tcp
+
+  - name: Allow port 22
+    community.general.ufw:
+      rule: allow
+      port: "22"
+      proto: tcp
