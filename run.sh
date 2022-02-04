@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # e.g. ./script --param value
 check=${check:-true}
