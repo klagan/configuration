@@ -23,7 +23,7 @@ sudo apt install git
 sudo apt install ansible
 pip install ansible-core
 sudo ansible-galaxy install -r requirements.yml
-if [ "$check" = "false" ]; then sudo ansible-playbook devbox.yml; echo "(not checked)"; else sudo ansible-playbook devbox.yml --check; echo "checked"; fi 
+if [ "$check" = "false" ]; then sudo ansible-playbook devbox.yml -u root; echo "(not checked)"; else sudo ansible-playbook devbox.yml -u root --check; echo "checked"; fi 
 
 echo "Script complete (check = $check)"
 
