@@ -23,3 +23,7 @@ sudo vi /usr/share/applications/code.desktop
 # change execution entry to:
 Exec=/usr/share/code/code --disable-gpu --unity-launch %F
 ```
+
+## TODO::
+
+- incorporate: https://proprivacy.com/blog/openvpn-linux
