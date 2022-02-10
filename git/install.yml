@@ -15,5 +15,5 @@
 
   - name: configure git example
     copy: 
-      src: "./git/.gitconfig.example" 
-      dest: "~/.gitconfig.example"
+      src: "./git/.gitconfig.client" 
+      dest: "~/.gitconfig.client"
