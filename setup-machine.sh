@@ -18,4 +18,7 @@
 # set default shell to zsh (must be installed)
 # chsh -s /bin/zsh
 
+# create ssh key
+# ssh-keygen -t rsa -b 4096
+
 # keyboard: English (UK, Macintosh)
