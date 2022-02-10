@@ -16,7 +16,7 @@
 
   vars:
     extra_path: /home/$USER/.local/bin/checkov
-    ssh_key_filename : id_kam
+    ssh_key_filename : id_rsa
     machine_user_name: "kam"
     # The "key" here is a regex of a setting you want to replace and the value is
     # the setting name + the setting value. E.g. we want to replace the line
