@@ -2,7 +2,7 @@
 # git config --global user.name "Kam Lagan"
 # git config --global --add user.email "github@lagan.me"
 
-[includeIf "gitdir:~/source/example/"]
+[includeIf "gitdir:~/source/client/"]
   path = ~/.gitconfig.example
 
 [includeIf "gitdir:~/source/github/"]
