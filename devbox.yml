@@ -37,6 +37,8 @@
           git_user_name: "klagan"
           git_user_email: "github@lagan.me"
 
+      - darkwizard242.checkov
+
     handlers:
       - name: restart ssh
         service:
@@ -136,7 +138,7 @@
 
   - include: terraform/install.yml
 
-  - include: checkov/install.yml
+  # - include: checkov/install.yml
 
   - include: docker/install.yml
 
@@ -145,6 +147,10 @@
   - include: ufw/install.yml
 
   - include: remmina/install.yml
+
+  - include: pwsh/install.yml
+
+  - include: ohmypwsh/install.yml
 
   - name: install lynx
     apt:
