@@ -44,7 +44,8 @@
         service:
           name: ssh
           state: restarted
-  
+      - name: restart sshd
+        command: service ssh restart  
   
   tasks:
   - debug: msg="Host is {{ ansible_fqdn }}"
@@ -99,9 +100,6 @@
     - sudo
     - openssh-server
     - openssh-client
-    - remmina 
-    - remmina-plugin-rdp 
-    - remmina-plugin-secret
     # - fail2ban
     # - crowdsec
 
@@ -130,7 +128,7 @@
       regexp: "{{ item }}"
       line: "{{ my_sshd_settings[item] }}"
       state: "present"
-    notify: "restart ssh"
+    notify: "restart sshd"
     with_items:
       - "{{ my_sshd_settings | list }}"
     tags:

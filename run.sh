@@ -21,8 +21,10 @@ done
 
 sudo apt update
 sudo apt install git
-sudo apt install ansible
+sudo apt install python3-pip
+# sudo apt install ansible
 pip install ansible-core
+pip install ansible
 sudo ansible-galaxy install -r requirements.yml
 sudo ansible-galaxy install -r roles/requirements.yml
 if [ "$check" = "false" ]; then sudo ansible-playbook devbox.yml -u root; echo "(not checked)"; else sudo ansible-playbook devbox.yml -u root --check; echo "checked"; fi 
