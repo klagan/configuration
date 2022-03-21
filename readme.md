@@ -27,3 +27,4 @@ Exec=/usr/share/code/code --disable-gpu --unity-launch %F
 ## TODO::
 
 - incorporate: https://proprivacy.com/blog/openvpn-linux
+- git help: https://www.freecodecamp.org/news/git-config-how-to-configure-git-settings/
