@@ -88,6 +88,10 @@ sudo apt-get update
 sudo chmod 666 /var/run/docker.sock
 sudo systemctl restart docker
 
+# install node 18
+# https://github.com/nodesource/distributions
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - &&\
+sudo apt-get install -y nodejs
 
 # install PowerShell
 sudo apt-get install -y powershell
