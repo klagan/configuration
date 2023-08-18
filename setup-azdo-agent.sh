@@ -35,7 +35,6 @@ su - vmadmin -c "/home/vmadmin/azdoagent/config.sh --unattended --agent '${AZP_A
 
 cd /home/vmadmin/azdoagent
 sudo /home/vmadmin/azdoagent/svc.sh install vmadmin
-sudo /home/vmadmin/azdoagent/svc.sh start
 
 su - vmadmin -c "
 wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
@@ -95,5 +94,5 @@ sudo apt-get install -y nodejs
 
 # install PowerShell
 sudo apt-get install -y powershell
-# Start PowerShell
-pwsh
+
+sudo /home/vmadmin/azdoagent/svc.sh start
