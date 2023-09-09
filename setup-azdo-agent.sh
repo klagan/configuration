@@ -20,7 +20,7 @@ fi
 if [ -d "./azdoagent" ]
 then
     echo "FATAL: azdoAgent folder exists on your filesystem."
-	exit 1
+exit 1
 fi
 
 su - vmadmin -c "
@@ -30,7 +30,8 @@ tar zxvf vsts-agent-linux-x64-2.214.1.tar.gz"
 
 su - vmadmin -c "./bin/installdependencies.sh"
 
-su - vmadmin -c "/home/vmadmin/azdoagent/config.sh --unattended --agent '${AZP_AGENT_NAME:-$(hostname)}' --url $3 --auth 'PAT' --token '$2' --replace --pool '$1'"
+su - vmadmin -c "/home/vmadmin/azdoagent/config.sh --agent '${AZP_AGENT_NAME:-$(hostname)}' --url $3 --auth 'PAT' --token '$2' --replace --pool '$1'
+ --unattended"
 
 
 cd /home/vmadmin/azdoagent
@@ -64,7 +65,8 @@ sudo chmod go+r /etc/apt/keyrings/microsoft.gpg
 
 
 AZ_REPO=$(lsb_release -cs)
-echo "deb [arch=`dpkg --print-architecture` signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" |
+echo "deb [arch=`dpkg --print-architecture` signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main
+" |
     sudo tee /etc/apt/sources.list.d/azure-cli.list
 
 sudo apt-get update
