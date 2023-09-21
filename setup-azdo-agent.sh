@@ -30,8 +30,7 @@ tar zxvf vsts-agent-linux-x64-2.214.1.tar.gz"
 
 su - vmadmin -c "./bin/installdependencies.sh"
 
-su - vmadmin -c "/home/vmadmin/azdoagent/config.sh --agent '${AZP_AGENT_NAME:-$(hostname)}' --url $3 --auth 'PAT' --token '$2' --replace --pool '$1'
- --unattended"
+su - vmadmin -c "/home/vmadmin/azdoagent/config.sh --agent '${AZP_AGENT_NAME:-$(hostname)}' --url $3 --auth 'PAT' --token '$2' --replace --pool '$1' --unattended"
 
 
 cd /home/vmadmin/azdoagent
